@@ -60,15 +60,23 @@ class War {
 
     }
     vikingAttack(){
-        const randomViking = this.vikingArmy[Math.floor(Math.random()*this.vikingArmy.length)]  //pick random Vicking from VickingArmy
-        const randomSaxon = this.saxonArmy[Math.floor(Math.random()*this.saxonArmy.length)] //pick random Saxon from SaxonArmy
-        const damageInflicted = randomSaxon.receiveDamage(randomViking.strength)  //define damage
+
+        const getRandomPlayer = (max) => (Math.floor(Math.random()* max));
+
+        const randomViking = getRandomPlayer(this.vikingArmy.length);  //pick random Vicking from VickingArmy
+        const randomSaxon = getRandomPlayer(this.saxonArmy.length) //pick random Saxon from SaxonArmy  
+        
+        console.log(randomViking)
+        console.log(randomSaxon)
+ 
+
+        const damageAttack = randomSaxon.receiveDamage(randomViking.strength)  //define damage
         
         if(randomSaxon.health <= 0){ // if Sanxon dies
             this.saxonArmy.splice(this.saxonArmy.indexOf(randomSaxon),1) //remove Saxon from Army
 
         }
-        return damageInflicted
+        return damageAttack
     }
 
     saxonAttack(){
@@ -103,7 +111,7 @@ const vik1 = new Viking ('Jonny', 5, 5, 4);
 const vik2 = new Viking ('Jack', 5, 2, 1);
 const vik3 = new Viking ('Jason', 7, 5, 8);
 const sax1 = new Saxon (6, 5, 8);
-const sax2 = new Saxon (3, 8, 4);
+const sax2 = new Saxon (3, 8, 8);
 const sax3 = new Saxon (3, 5, 2);
 const newWar = new War();
 newWar.addViking(vik1);
